@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/Users/rahul/Work/main_pp/PillarPlus-AutoCAD'
+let g:netrw_dirhist_2='/Users/rahul'
+let g:netrw_dirhist_1='/Users/rahul/Work/main_pp/PillarPlus-AutoCAD'
