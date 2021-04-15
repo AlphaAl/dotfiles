@@ -1,5 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/Users/rahul/Work/main_pp/PillarPlus-AutoCAD/management'
+let g:netrw_dirhist_0='/Users/rahul/Work/main_pp/PillarPlus-AutoCAD'
+let g:netrw_dirhist_9='/Users/rahul/Work/main_pp/PillarPlus-AutoCAD/management'
+let g:netrw_dirhist_8='/Users/rahul/Work/main_pp/PillarPlus-AutoCAD'
+let g:netrw_dirhist_7='/Users/rahul/miniforge3/envs/tf24'
+let g:netrw_dirhist_6='/Users/rahul/miniforge3/envs'
+let g:netrw_dirhist_5='/Users/rahul/miniforge3'
+let g:netrw_dirhist_4='/Users/rahul'
 let g:netrw_dirhist_3='/Users/rahul/Work/main_pp/PillarPlus-AutoCAD'
 let g:netrw_dirhist_2='/Users/rahul'
-let g:netrw_dirhist_1='/Users/rahul/Work/main_pp/PillarPlus-AutoCAD'

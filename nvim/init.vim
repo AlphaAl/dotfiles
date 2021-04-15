@@ -89,3 +89,9 @@ nnoremap <silent> ]q :cnext<CR>
 " adding tab navigation for easy usage
 nnoremap <silent> <leader><left> :tabprevious<CR>
 nnoremap <silent> <leader><right> :tabnext<CR>
+nnoremap <leader>[ :bprevious<CR>
+nnoremap <leader>] :bnext<CR>
+" for better cursor position in storm of text
+set cursorline
+syntax enable 
+colorscheme monokai
