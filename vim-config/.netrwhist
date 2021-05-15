@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/Users/rahul/Documents/recommender/mtech-amity-movie-recommender-system'
+let g:netrw_dirhist_0='/Users/rahul/Work/main_pp/PillarPlus-AutoCAD'
+let g:netrw_dirhist_9='/Users/rahul/miniforge3/envs/openai/lib/python3.8/site-packages'
+let g:netrw_dirhist_8='/Users/rahul/Documents/recommender/mtech-amity-movie-recommender-system/rough'
+let g:netrw_dirhist_7='/Users/rahul/Work/main_pp/PillarPlus-AutoCAD'
+let g:netrw_dirhist_6='/Users/rahul/JupyterWork/scraping/first_scrapy/first_scrapy/spiders'
+let g:netrw_dirhist_5='/Users/rahul/JupyterWork/scraping/first_scrapy/first_scrapy'
+let g:netrw_dirhist_4='/Users/rahul/JupyterWork/scraping/first_scrapy'
+let g:netrw_dirhist_3='/Users/rahul/miniforge3/envs/openai/lib/python3.8/site-packages'
+let g:netrw_dirhist_2='/Users/rahul/miniforge3/envs/openai/lib/python3.8/site-packages/requests'
