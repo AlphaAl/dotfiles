@@ -3,81 +3,66 @@
 " setting default python path
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
-
 " Make sure you use single quotes
-
 Plug 'liuchengxu/vim-which-key'
-
 " On-demand lazy load
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
-
 " auto complete pop
 Plug 'vim-scripts/AutoComplPop'
 " Any valid git URL is allowed
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-
 " Multiple Plug commands can be written in a single line using | separators
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-
 " Using a non-default branch
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-
 " Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
 Plug 'fatih/vim-go', { 'tag': '*' }
-
 " Plugin options
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
 " Unmanaged plugin (manually installed and updated)
 Plug '~/my-prototype-plugin'
-
 " fzf plugin settings
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-
 " plugin for faster code nav
 Plug 'mileszs/ack.vim'
-
 " plugin for surrounding around a text object.
 Plug 'tpope/vim-surround'
-
 " commenting k liye
 Plug 'tpope/vim-commentary'
-
 " sneak plugin for faster travel
 Plug 'justinmk/vim-sneak'
-
 " vim repl toggle
 Plug 'sillybun/vim-repl'
-
 " taglist
 Plug 'vim-scripts/taglist.vim'
 " lightline
 Plug 'itchyny/lightline.vim'
-
 " git gutter
 Plug 'airblade/vim-gitgutter'
-
 " jedi autocompletion
 Plug 'davidhalter/jedi-vim'
-
 " installing gruvbox
 Plug 'morhetz/gruvbox'
-
 " vim fugitive
 Plug 'tpope/vim-fugitive'
-
+" vim lucious
+Plug 'jonathanfilip/vim-lucius'
+" vimspector
+Plug 'puremourning/vimspector'
+Plug 'szw/vim-maximizer'
 " Initialize plugin system
+" vim org mode
+Plug 'jceb/vim-orgmode'
+Plug 'tpope/vim-speeddating'
+" may be a good one
 call plug#end()
 
 " basic configs
@@ -125,8 +110,8 @@ nnoremap <leader>[ :bprevious<CR>
 nnoremap <leader>] :bnext<CR>
 " for better cursor position in storm of text
 set cursorline
-syntax enable 
-colorscheme gruvbox
+syntax on 
+colorscheme monokai
 set complete+=kspell
 if system('uname -s') == "Darwin\n"
   set clipboard=unnamed "OSX
@@ -143,6 +128,7 @@ map <leader>nt :NERDTreeToggle<CR>
 " terminal settings
 set termwinsize=10*0
 map <leader>t :bo term<CR>
+tnoremap <C-q> <C-w>:q!<CR>
 " this is the sneak bindings
 map f <Plug>Sneak_s
 map F <Plug>Sneak_S
@@ -163,10 +149,10 @@ set laststatus=2
 map <leader>i :setlocal autoindent<CR>
 map <leader>I :setlocal noautoindent<CR>
 " jedi vim settings
-let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_command = "<leader>D"
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_stubs_command = "<leader>s"
-let g:jedi#goto_definitions_command = ""
+let g:jedi#goto_definitions_command = "D"
 let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
@@ -176,3 +162,34 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = "2"
 " change working directory to current file on the fly
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+nnoremap <C-\> :TlistToggle<CR>
+" debugger with F5
+" nnoremap <leader>dd :tab ter python -m pudb %<CR>
+" Debugger remaps
+nnoremap <leader>m :MaximizerToggle!<CR>
+nnoremap <leader>dd :call vimspector#Launch()<CR>
+nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
+nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
+nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
+nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
+nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
+nnoremap <leader>de :call vimspector#Reset()<CR>
+
+nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
+
+nmap <leader>dl <Plug>VimspectorStepInto
+nmap <leader>dj <Plug>VimspectorStepOver
+nmap <leader>dk <Plug>VimspectorStepOut
+nmap <leader>d_ <Plug>VimspectorRestart
+nnoremap <leader>d<space> :call vimspector#Continue()<CR>
+
+nmap <leader>drc <Plug>VimspectorRunToCursor
+nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
+nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
+nmap <leader>di <Plug>VimspectorBalloonEval
+xmap <leader>di <Plug>VimspectorBalloonEval
+" <Plug>VimspectorStop
+" <Plug>VimspectorPause
+" <Plug>VimspectorAddFunctionBreakpoint
+" **********************************************************custom function
